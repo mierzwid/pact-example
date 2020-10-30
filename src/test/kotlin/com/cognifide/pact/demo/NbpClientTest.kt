@@ -1,5 +1,6 @@
 package com.cognifide.pact.demo
 
+import au.com.dius.pact.consumer.dsl.PactDslJsonBody
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider
 import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
@@ -28,20 +29,19 @@ class NbpClientTest {
             .willRespondWith()
             .status(200)
             .body(
-                """
-                {
-                    "table": "A",
-                    "currency": "euro",
-                    "code": "EUR",
-                    "rates": [
-                    {
-                        "no": "212/A/NBP/2020",
-                        "effectiveDate": "2020-10-29",
-                        "mid": 4.6330
-                    }
-                    ]
-                }
-                """.trimIndent()
+                PactDslJsonBody()
+                    .stringValue("table", "A")
+                    .stringValue("currency", "euro")
+                    .stringValue("code", "EUR")
+                    .array("rates")
+                    .`object`()
+                    .stringValue("no", "212/A/NBP/2020")
+                    .stringMatcher("no", ".+")
+                    .stringValue("effectiveDate", "2020-10-29")
+                    .stringMatcher("effectiveDate", "[0-9]{4}/-[0-9]{2}/-[0-9]{4}")
+                    .numberValue("mid", 4.6330)
+                    .closeObject()
+                    .closeArray()
             )
             .toPact()
     }

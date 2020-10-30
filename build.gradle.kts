@@ -20,6 +20,18 @@ dependencies {
     testImplementation("au.com.dius.pact.consumer:junit:4.1.7")
 }
 
+tasks {
+    register<Copy>("pactUpdate") {
+        from("$buildDir/pacts")
+        into("$projectDir/pacts")
+        dependsOn("test")
+    }
+
+    named("pactVerify") {
+        mustRunAfter("pactUpdate")
+    }
+}
+
 pact {
     serviceProviders {
         create("nbp") {
