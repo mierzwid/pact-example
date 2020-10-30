@@ -37,6 +37,30 @@
           "name": "euro rate"
         }
       ]
+    },
+    {
+      "description": "a request for json data",
+      "request": {
+        "method": "GET",
+        "path": "/api/exchangerates/rates/A/UNSPECIFIED",
+        "query": {
+          "format": [
+            "json"
+          ]
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "text/plain; charset=ISO-8859-1"
+        },
+        "body": "404 NotFound - Not Found - Brak danych"
+      },
+      "providerStates": [
+        {
+          "name": "invalid currency code"
+        }
+      ]
     }
   ],
   "metadata": {

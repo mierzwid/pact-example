@@ -6,6 +6,8 @@ import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.fail
+import org.apache.http.entity.ContentType
 import org.junit.Rule
 import org.junit.Test
 
@@ -55,6 +57,37 @@ class NbpClientTest {
 
         //then
         assertEquals(4.6330, rate)
+    }
+
+    @Pact(provider = "nbp", consumer = "demo")
+    fun nbp404Pact(builder: PactDslWithProvider): RequestResponsePact? {
+        return builder
+            .given("invalid currency code")
+            .uponReceiving("a request for json data")
+            .path("/api/exchangerates/rates/A/UNSPECIFIED")
+            .method("GET")
+            .query("format=json")
+            .willRespondWith()
+            .status(404)
+            .body("404 NotFound - Not Found - Brak danych", ContentType.TEXT_PLAIN)
+            .toPact()
+    }
+
+    @Test
+    @PactVerification(value = ["nbp"], fragment = "nbp404Pact")
+    fun shouldRespondWith404PACT() {
+        //given
+        val client = NbpClient(provider.url)
+
+        //when
+        try {
+            client.getRate(Code.UNSPECIFIED)
+
+            //then
+            fail("Expected exception to be thrown")
+        } catch (e: NotFoundException) {
+            //pass
+        }
     }
 
     @Test
