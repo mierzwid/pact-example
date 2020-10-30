@@ -1,0 +1,50 @@
+{
+  "provider": {
+    "name": "nbp"
+  },
+  "consumer": {
+    "name": "demo"
+  },
+  "interactions": [
+    {
+      "description": "a request for json data",
+      "request": {
+        "method": "GET",
+        "path": "/api/exchangerates/rates/A/EUR",
+        "query": {
+          "format": [
+            "json"
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "table": "A",
+          "currency": "euro",
+          "code": "EUR",
+          "rates": [
+            {
+              "no": "212/A/NBP/2020",
+              "effectiveDate": "2020-10-29",
+              "mid": 4.6330
+            }
+          ]
+        }
+      },
+      "providerStates": [
+        {
+          "name": "euro rate"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.1.7"
+    }
+  }
+}
