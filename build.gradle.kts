@@ -21,14 +21,16 @@ dependencies {
 }
 
 tasks {
+    named("test") {
+        outputs.files("$buildDir/pacts")
+    }
     register<Copy>("pactUpdate") {
         from("$buildDir/pacts")
         into("$projectDir/pacts")
         dependsOn("test")
     }
-
-    named("pactVerify") {
-        mustRunAfter("pactUpdate")
+    matching { it.name.startsWith("pactVerify") }.configureEach {
+        dependsOn("pactUpdate")
     }
 }
 
