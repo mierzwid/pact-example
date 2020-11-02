@@ -6,11 +6,14 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.fail
 import org.apache.commons.io.ByteOrderMark.UTF_BOM
 import org.apache.http.entity.ContentType
 import org.junit.Rule
 import org.junit.Test
+import java.sql.Date
+import java.time.LocalDate
 
 
 class NbpClientTest {
@@ -35,9 +38,9 @@ class NbpClientTest {
                     .stringValue("code", "EUR")
                     .array("rates")
                     .`object`()
-                    .stringMatcher("no", "[0-9]+/A/NBP/[0-9]{4}")
-                    .date("effectiveDate", "yyyy-MM-dd")
-                    .numberType("mid")
+                    .stringMatcher("no", "[0-9]+/A/NBP/[0-9]{4}", "214/A/NBP/2020")
+                    .date("effectiveDate", "yyyy-MM-dd", date(2020, 10, 10))
+                    .numberType("mid", 4.87)
                     .closeObject()
                     .closeArray()
             )
@@ -54,8 +57,7 @@ class NbpClientTest {
         val rate = client.getRate(Code.EUR)
 
         //then
-        assertNotNull(rate)
-        assertTrue(rate > 0)
+        assertEquals(4.87, rate)
     }
 
     @Pact(provider = "nbp", consumer = "demo")
@@ -88,4 +90,6 @@ class NbpClientTest {
             //pass
         }
     }
+
+    private fun date(year: Int, month: Int, day: Int) = Date.valueOf(LocalDate.of(year, month, day))
 }

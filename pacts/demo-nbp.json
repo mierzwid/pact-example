@@ -26,9 +26,9 @@
           "code": "EUR",
           "rates": [
             {
-              "no": "6/A/NBP/3011",
-              "mid": 100,
-              "effectiveDate": "2000-01-31"
+              "no": "214/A/NBP/2020",
+              "mid": 4.87,
+              "effectiveDate": "2020-10-10"
             }
           ],
           "currency": "euro",
@@ -40,7 +40,7 @@
               "matchers": [
                 {
                   "match": "regex",
-                  "regex": "[0-9]{1}/A/NBP/[0-9]{4}"
+                  "regex": "[0-9]+/A/NBP/[0-9]{4}"
                 }
               ],
               "combine": "AND"
@@ -72,23 +72,6 @@
                 }
               ],
               "combine": "AND"
-            }
-          }
-        },
-        "generators": {
-          "body": {
-            "$.rates[0].no": {
-              "type": "Regex",
-              "regex": "[0-9]{1}/A/NBP/[0-9]{4}"
-            },
-            "$.rates[0].effectiveDate": {
-              "type": "Date",
-              "format": "yyyy-MM-dd"
-            },
-            "$.rates[0].mid": {
-              "type": "RandomInt",
-              "min": 0,
-              "max": 2147483647
             }
           }
         }
