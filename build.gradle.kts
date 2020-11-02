@@ -8,6 +8,10 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+val pactsDir = "pacts"
+val pactContainerName = "pact-stubs"
+val pactContainerPort = 8910
+
 repositories {
     jcenter()
 }
@@ -17,20 +21,43 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
     testImplementation("junit:junit:4.12")
     testImplementation("au.com.dius.pact.provider:junit:4.1.7")
-    testImplementation("au.com.dius.pact.consumer:junit:4.1.7")
 }
 
 tasks {
     named("test") {
-        outputs.dir("$buildDir/pacts")
+        outputs.dir("$buildDir/$pactsDir")
     }
     register<Copy>("pactUpdate") {
-        from("$buildDir/pacts")
-        into("$projectDir/pacts")
+        from("$buildDir/$pactsDir")
+        into("$projectDir/$pactsDir")
         dependsOn("test")
     }
     matching { it.name.startsWith("pactVerify") }.configureEach {
         dependsOn("pactUpdate")
+    }
+    register<Exec>("runPactStubs") {
+        commandLine = listOf(
+            "docker",
+            "run",
+            "--name=$pactContainerName",
+            "-t",
+            "-p",
+            "$pactContainerPort:$pactContainerPort",
+            "-v",
+            "$projectDir/$pactsDir/:/app/pacts",
+            "pactfoundation/pact-stub-server",
+            "-p",
+            "$pactContainerPort",
+            "--dir=$pactsDir"
+        )
+        dependsOn("pactUpdate")
+    }
+    register<Exec>("stopPactStubs") {
+        commandLine = listOf("docker", "container", "rm", pactContainerName)
+        dependsOn("stopOnlyPactStubs")
+    }
+    register<Exec>("stopOnlyPactStubs") {
+        commandLine = listOf("docker", "stop", pactContainerName)
     }
 }
 
