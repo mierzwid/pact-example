@@ -26,9 +26,9 @@
           "code": "EUR",
           "rates": [
             {
-              "no": "\u787C",
-              "mid": 4.633,
-              "effectiveDate": "2764/-26/-5910"
+              "no": "349/A/NBP/0930",
+              "mid": 100,
+              "effectiveDate": "0276-06-33"
             }
           ],
           "currency": "euro",
@@ -40,7 +40,7 @@
               "matchers": [
                 {
                   "match": "regex",
-                  "regex": ".+"
+                  "regex": "[0-9]+/A/NBP/[0-9]{4}"
                 }
               ],
               "combine": "AND"
@@ -49,7 +49,15 @@
               "matchers": [
                 {
                   "match": "regex",
-                  "regex": "[0-9]{4}/-[0-9]{2}/-[0-9]{4}"
+                  "regex": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.rates[0].mid": {
+              "matchers": [
+                {
+                  "match": "number"
                 }
               ],
               "combine": "AND"
@@ -71,11 +79,16 @@
           "body": {
             "$.rates[0].no": {
               "type": "Regex",
-              "regex": ".+"
+              "regex": "[0-9]+/A/NBP/[0-9]{4}"
             },
             "$.rates[0].effectiveDate": {
               "type": "Regex",
-              "regex": "[0-9]{4}/-[0-9]{2}/-[0-9]{4}"
+              "regex": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+            },
+            "$.rates[0].mid": {
+              "type": "RandomInt",
+              "min": 0,
+              "max": 2147483647
             }
           }
         }
@@ -100,9 +113,9 @@
       "response": {
         "status": 404,
         "headers": {
-          "Content-Type": "text/plain; charset=ISO-8859-1"
+          "Content-Type": "text/plain; charset=UTF-8"
         },
-        "body": "404 NotFound - Not Found - Brak danych"
+        "body": "\uFEFF404 NotFound"
       },
       "providerStates": [
         {

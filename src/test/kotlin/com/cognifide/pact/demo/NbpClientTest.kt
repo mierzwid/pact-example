@@ -6,8 +6,8 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.fail
+import junit.framework.TestCase.*
+import org.apache.commons.io.ByteOrderMark.UTF_BOM
 import org.apache.http.entity.ContentType
 import org.junit.Rule
 import org.junit.Test
@@ -36,10 +36,10 @@ class NbpClientTest {
                     .array("rates")
                     .`object`()
                     .stringValue("no", "212/A/NBP/2020")
-                    .stringMatcher("no", ".+")
+                    .stringMatcher("no", "[0-9]+/A/NBP/[0-9]{4}")
                     .stringValue("effectiveDate", "2020-10-29")
-                    .stringMatcher("effectiveDate", "[0-9]{4}/-[0-9]{2}/-[0-9]{4}")
-                    .numberValue("mid", 4.6330)
+                    .stringMatcher("effectiveDate", "[0-9]{4}-[0-9]{2}-[0-9]{2}")
+                    .numberType("mid")
                     .closeObject()
                     .closeArray()
             )
@@ -56,7 +56,8 @@ class NbpClientTest {
         val rate = client.getRate(Code.EUR)
 
         //then
-        assertEquals(4.6330, rate)
+        assertNotNull(rate)
+        assertTrue(rate > 0)
     }
 
     @Pact(provider = "nbp", consumer = "demo")
@@ -69,7 +70,7 @@ class NbpClientTest {
             .query("format=json")
             .willRespondWith()
             .status(404)
-            .body("404 NotFound - Not Found - Brak danych", ContentType.TEXT_PLAIN)
+            .body("${UTF_BOM}404 NotFound", ContentType.create("text/plain", "UTF-8"))
             .toPact()
     }
 

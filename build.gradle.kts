@@ -22,7 +22,7 @@ dependencies {
 
 tasks {
     named("test") {
-        outputs.files("$buildDir/pacts")
+        outputs.dir("$buildDir/pacts")
     }
     register<Copy>("pactUpdate") {
         from("$buildDir/pacts")
