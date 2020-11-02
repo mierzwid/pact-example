@@ -88,18 +88,4 @@ class NbpClientTest {
             //pass
         }
     }
-
-    @Test
-    fun shouldFetchUSDRates() {
-        val rate = NbpClient().getRate(Code.USD)
-
-        assertEquals(3.9563, rate)
-    }
-
-    @Test
-    fun shouldFetchEURRates() {
-        val rate = NbpClient().getRate(Code.EUR)
-
-        assertEquals(4.6188, rate)
-    }
 }

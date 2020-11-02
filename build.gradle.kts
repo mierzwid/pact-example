@@ -48,4 +48,9 @@ pact {
             }
         }
     }
+
+    publish {
+        pactBrokerUrl = "https://mierzwid.pactflow.io"
+        pactBrokerToken = "ikV4EJmkRh8aXjTXUgKkHg"
+    }
 }

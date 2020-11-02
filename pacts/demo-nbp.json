@@ -26,7 +26,7 @@
           "code": "EUR",
           "rates": [
             {
-              "no": "8/A/NBP/3201",
+              "no": "6/A/NBP/3011",
               "mid": 100,
               "effectiveDate": "2000-01-31"
             }
@@ -40,7 +40,7 @@
               "matchers": [
                 {
                   "match": "regex",
-                  "regex": "[0-9]+/A/NBP/[0-9]{4}"
+                  "regex": "[0-9]{1}/A/NBP/[0-9]{4}"
                 }
               ],
               "combine": "AND"
@@ -79,7 +79,7 @@
           "body": {
             "$.rates[0].no": {
               "type": "Regex",
-              "regex": "[0-9]+/A/NBP/[0-9]{4}"
+              "regex": "[0-9]{1}/A/NBP/[0-9]{4}"
             },
             "$.rates[0].effectiveDate": {
               "type": "Date",
