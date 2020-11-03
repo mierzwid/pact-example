@@ -8,9 +8,9 @@ import com.cognifide.pact.demo.rates.RateClient
 class RateClientMock : RateClient {
     override fun getRate(code: Code) =
         when (code) {
-            Code.USD -> Rate("1", "2020-01-01", 3.82)
-            Code.EUR -> Rate("1", "2020-01-01", 4.674)
-            Code.CHF -> Rate("1", "2020-01-01", 3.483)
+            Code.USD -> Rate.of(3.82)
+            Code.EUR -> Rate.of(4.674)
+            Code.CHF -> Rate.of(3.483)
             else -> throw NotFoundException()
         }
 }

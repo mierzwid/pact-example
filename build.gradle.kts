@@ -40,6 +40,7 @@ tasks {
         commandLine = listOf(
             "docker",
             "run",
+            "-d",
             "--name=$pactContainerName",
             "-t",
             "-p",
@@ -51,14 +52,26 @@ tasks {
             "$pactContainerPort",
             "--dir=$pactsDir"
         )
+        doLast {
+            logger.lifecycle("PACT stubs available under: http://localhost:$pactContainerPort")
+        }
         dependsOn("pactUpdate")
+        mustRunAfter("stopPactStubs")
     }
-    register<Exec>("stopPactStubs") {
+    register("stopPactStubs") {
+        dependsOn("stopPactStubsContainer", "rmPactStubsContainer")
+    }
+    register<Exec>("rmPactStubsContainer") {
         commandLine = listOf("docker", "container", "rm", pactContainerName)
-        dependsOn("stopOnlyPactStubs")
+        isIgnoreExitValue = true
+        mustRunAfter("stopPactStubsContainer")
     }
-    register<Exec>("stopOnlyPactStubs") {
+    register<Exec>("stopPactStubsContainer") {
         commandLine = listOf("docker", "stop", pactContainerName)
+        isIgnoreExitValue = true
+    }
+    register("restartPactStubs") {
+        dependsOn("stopPactStubs", "runPactStubs")
     }
 }
 
