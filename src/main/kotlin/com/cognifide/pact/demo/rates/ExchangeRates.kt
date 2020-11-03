@@ -1,4 +1,4 @@
-package com.cognifide.pact.demo
+package com.cognifide.pact.demo.rates
 
 import kotlinx.serialization.Serializable
 

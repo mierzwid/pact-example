@@ -1,3 +1,3 @@
-package com.cognifide.pact.demo
+package com.cognifide.pact.demo.rates
 
 class NotFoundException : RuntimeException()

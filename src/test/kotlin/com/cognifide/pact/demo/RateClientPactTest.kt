@@ -6,6 +6,9 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
+import com.cognifide.pact.demo.rates.Code
+import com.cognifide.pact.demo.rates.nbp.RateClientNbp
+import com.cognifide.pact.demo.rates.NotFoundException
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.apache.commons.io.ByteOrderMark.UTF_BOM
@@ -16,7 +19,7 @@ import java.sql.Date
 import java.time.LocalDate
 
 
-class NbpClientTest {
+class RateClientPactTest {
 
     @get:Rule
     var provider: PactProviderRule = PactProviderRule("nbp", "localhost", 1234, this)
@@ -51,13 +54,13 @@ class NbpClientTest {
     @PactVerification(value = ["nbp"], fragment = "nbpEurPact")
     fun shouldFetchEURRatesPACT() {
         //given
-        val client = NbpClient(provider.url)
+        val client = RateClientNbp(provider.url)
 
         //when
         val rate = client.getRate(Code.EUR)
 
         //then
-        assertEquals(4.87, rate)
+        assertEquals(4.87, rate.mid)
     }
 
     @Pact(provider = "nbp", consumer = "demo")
@@ -78,7 +81,7 @@ class NbpClientTest {
     @PactVerification(value = ["nbp"], fragment = "nbp404Pact")
     fun shouldRespondWith404PACT() {
         //given
-        val client = NbpClient(provider.url)
+        val client = RateClientNbp(provider.url)
 
         //when
         try {
