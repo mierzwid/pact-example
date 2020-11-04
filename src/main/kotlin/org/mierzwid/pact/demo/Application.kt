@@ -5,7 +5,7 @@ import org.mierzwid.pact.demo.rates.nbp.RateClientNbp
 import org.mierzwid.pact.demo.rates.NotFoundException
 
 fun main() {
-    val client = RateClientNbp("http://localhost:8080")
+    val client = RateClientNbp("http://localhost:8910")
     val rate = client.getRate(Code.EUR)
     println("This is some rate: ${rate.mid}")
     try {
