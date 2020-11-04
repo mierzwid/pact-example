@@ -1,9 +1,9 @@
-package com.cognifide.pact.demo.rates.nbp
+package org.mierzwid.pact.demo.rates.nbp
 
-import com.cognifide.pact.demo.rates.Code
-import com.cognifide.pact.demo.rates.ExchangeRates
-import com.cognifide.pact.demo.rates.NotFoundException
-import com.cognifide.pact.demo.rates.RateClient
+import org.mierzwid.pact.demo.rates.Code
+import org.mierzwid.pact.demo.rates.ExchangeRates
+import org.mierzwid.pact.demo.rates.NotFoundException
+import org.mierzwid.pact.demo.rates.RateClient
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.io.FileNotFoundException

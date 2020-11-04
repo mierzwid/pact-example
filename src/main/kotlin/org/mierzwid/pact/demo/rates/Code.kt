@@ -1,4 +1,4 @@
-package com.cognifide.pact.demo.rates
+package org.mierzwid.pact.demo.rates
 
 enum class Code {
     EUR, USD, CHF, UNSPECIFIED

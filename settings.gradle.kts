@@ -1,2 +1,1 @@
-rootProject.name = "fun"
-
+rootProject.name = "pact-example"

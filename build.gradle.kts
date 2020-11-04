@@ -5,7 +5,7 @@ plugins {
     id("au.com.dius.pact") version "4.1.7"
 }
 
-group = "org.example"
+group = "org.mierzwid"
 version = "1.0-SNAPSHOT"
 
 val pactsDir = "pacts"
@@ -88,10 +88,5 @@ pact {
                 pactSource = file("pacts/demo-nbp.json")
             }
         }
-    }
-
-    publish {
-        pactBrokerUrl = "https://mierzwid.pactflow.io"
-        pactBrokerToken = "ikV4EJmkRh8aXjTXUgKkHg"
     }
 }

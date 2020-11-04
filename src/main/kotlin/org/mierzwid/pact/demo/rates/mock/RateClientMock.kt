@@ -1,9 +1,9 @@
-package com.cognifide.pact.demo.rates.mock
+package org.mierzwid.pact.demo.rates.mock
 
-import com.cognifide.pact.demo.rates.Code
-import com.cognifide.pact.demo.rates.NotFoundException
-import com.cognifide.pact.demo.rates.Rate
-import com.cognifide.pact.demo.rates.RateClient
+import org.mierzwid.pact.demo.rates.Code
+import org.mierzwid.pact.demo.rates.NotFoundException
+import org.mierzwid.pact.demo.rates.Rate
+import org.mierzwid.pact.demo.rates.RateClient
 
 class RateClientMock : RateClient {
     override fun getRate(code: Code) =

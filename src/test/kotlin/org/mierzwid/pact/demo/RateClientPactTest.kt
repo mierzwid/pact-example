@@ -1,4 +1,4 @@
-package com.cognifide.pact.demo
+package org.mierzwid.pact.demo
 
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider
@@ -6,9 +6,9 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
-import com.cognifide.pact.demo.rates.Code
-import com.cognifide.pact.demo.rates.nbp.RateClientNbp
-import com.cognifide.pact.demo.rates.NotFoundException
+import org.mierzwid.pact.demo.rates.Code
+import org.mierzwid.pact.demo.rates.nbp.RateClientNbp
+import org.mierzwid.pact.demo.rates.NotFoundException
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.apache.commons.io.ByteOrderMark.UTF_BOM

@@ -1,6 +1,6 @@
-package com.cognifide.pact.demo.rates
+package org.mierzwid.pact.demo.rates
 
-import com.cognifide.pact.demo.rates.nbp.RateClientNbp
+import org.mierzwid.pact.demo.rates.nbp.RateClientNbp
 
 class RateService(private val client: RateClient = RateClientNbp()) {
 

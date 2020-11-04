@@ -1,9 +1,9 @@
-package com.cognifide.pact.demo
+package org.mierzwid.pact.demo
 
-import com.cognifide.pact.demo.rates.Code
-import com.cognifide.pact.demo.rates.Rate
-import com.cognifide.pact.demo.rates.RateClient
-import com.cognifide.pact.demo.rates.RateService
+import org.mierzwid.pact.demo.rates.Code
+import org.mierzwid.pact.demo.rates.Rate
+import org.mierzwid.pact.demo.rates.RateClient
+import org.mierzwid.pact.demo.rates.RateService
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

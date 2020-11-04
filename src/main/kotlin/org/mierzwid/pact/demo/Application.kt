@@ -1,8 +1,8 @@
-package com.cognifide.pact.demo
+package org.mierzwid.pact.demo
 
-import com.cognifide.pact.demo.rates.Code
-import com.cognifide.pact.demo.rates.nbp.RateClientNbp
-import com.cognifide.pact.demo.rates.NotFoundException
+import org.mierzwid.pact.demo.rates.Code
+import org.mierzwid.pact.demo.rates.nbp.RateClientNbp
+import org.mierzwid.pact.demo.rates.NotFoundException
 
 fun main() {
     val client = RateClientNbp("http://localhost:8080")
