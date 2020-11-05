@@ -13,7 +13,7 @@ class RateClientNbp(private val url: String = "http://api.nbp.pl") : RateClient 
 
     override fun getRate(code: Code) = try {
         val responseText = URL(requestUrl(code)).readText()
-        Json.decodeFromString<ExchangeRates>(responseText).rates.first()
+        Json { ignoreUnknownKeys = true }.decodeFromString<ExchangeRates>(responseText).rates.first()
     } catch (e: FileNotFoundException) {
         throw NotFoundException()
     }
