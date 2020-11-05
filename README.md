@@ -14,31 +14,6 @@ Run `gw runPactStubs` to start server with stubs based on generated PACTs in Doc
 
 ## Motivation
 
----
-templateKey: blog-post
-title: Make integrations simple
-date: 2099-01-01
-authors:
-  - Damian Mierzwiński
-featuredpost: false
-featuredimage:
-  src: ./featured-image.jpg
-  attributionLabel: Damian Mierzwiński
-  alt: Child drawing with four interconnected elements.
-summary:
-  Integration with other systems is one of the most complex parts of software delivery. Is there a silver bullet that
-  can address issues like flaky tests, unstable environments and non-trivial bugs that slow down the development?
-heroImage:
-  src: ./hero-image.jpg
-  attributionLabel: Damian Mierzwiński
-  alt: Close-up of a child drawing with four interconnected elements.
-tags:
-  - aem
-  - development
-  - culture
-  - best-practices
----
-
 It is very rare to have an application that is not integrated with other systems. This also applies to AEM application
 development. In many cases, we don't have control over those other parties. Such APIs are maintained by other teams or
 even companies. Sometimes they are not maintained at all. On the other hand, they might not exist when we start our
