@@ -1,11 +1,11 @@
-package org.mierzwid.pact.demo.rates.mock
+package org.mierzwid.pact.demo.rates.stub
 
 import org.mierzwid.pact.demo.rates.Code
 import org.mierzwid.pact.demo.rates.NotFoundException
 import org.mierzwid.pact.demo.rates.Rate
 import org.mierzwid.pact.demo.rates.RateClient
 
-class RateClientMock : RateClient {
+class RateClientStub : RateClient {
     override fun getRate(code: Code) =
         when (code) {
             Code.USD -> Rate(3.82)
