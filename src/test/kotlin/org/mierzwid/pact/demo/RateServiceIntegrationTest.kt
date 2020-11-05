@@ -15,8 +15,8 @@ class RateServiceIntegrationTest {
         val service = RateService(object : RateClient {
             override fun getRate(code: Code) =
                 when (code) {
-                    Code.USD -> Rate.of(5.0)
-                    Code.EUR -> Rate.of(4.0)
+                    Code.USD -> Rate(5.0)
+                    Code.EUR -> Rate(4.0)
                     else -> throw Exception("It should never ask for different rates")
                 }
         })

@@ -26,34 +26,12 @@
           "code": "EUR",
           "rates": [
             {
-              "no": "214/A/NBP/2020",
-              "mid": 4.87,
-              "effectiveDate": "2020-10-10"
+              "mid": 4.38
             }
-          ],
-          "currency": "euro",
-          "table": "A"
+          ]
         },
         "matchingRules": {
           "body": {
-            "$.rates[0].no": {
-              "matchers": [
-                {
-                  "match": "regex",
-                  "regex": "[0-9]+/A/NBP/[0-9]{4}"
-                }
-              ],
-              "combine": "AND"
-            },
-            "$.rates[0].effectiveDate": {
-              "matchers": [
-                {
-                  "match": "date",
-                  "date": "yyyy-MM-dd"
-                }
-              ],
-              "combine": "AND"
-            },
             "$.rates[0].mid": {
               "matchers": [
                 {

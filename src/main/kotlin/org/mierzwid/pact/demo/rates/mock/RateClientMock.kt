@@ -8,9 +8,9 @@ import org.mierzwid.pact.demo.rates.RateClient
 class RateClientMock : RateClient {
     override fun getRate(code: Code) =
         when (code) {
-            Code.USD -> Rate.of(3.82)
-            Code.EUR -> Rate.of(4.674)
-            Code.CHF -> Rate.of(3.483)
+            Code.USD -> Rate(3.82)
+            Code.EUR -> Rate(4.674)
+            Code.CHF -> Rate(3.483)
             else -> throw NotFoundException()
         }
 }

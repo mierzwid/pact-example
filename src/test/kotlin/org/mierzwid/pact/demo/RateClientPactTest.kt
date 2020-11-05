@@ -36,14 +36,10 @@ class RateClientPactTest {
             .status(200)
             .body(
                 PactDslJsonBody()
-                    .stringValue("table", "A")
-                    .stringValue("currency", "euro")
                     .stringValue("code", "EUR")
                     .array("rates")
                     .`object`()
-                    .stringMatcher("no", "[0-9]+/A/NBP/[0-9]{4}", "214/A/NBP/2020")
-                    .date("effectiveDate", "yyyy-MM-dd", date(2020, 10, 10))
-                    .numberType("mid", 4.87)
+                    .numberType("mid", 4.38)
                     .closeObject()
                     .closeArray()
             )
@@ -60,7 +56,7 @@ class RateClientPactTest {
         val rate = client.getRate(Code.EUR)
 
         //then
-        assertEquals(4.87, rate.mid)
+        assertEquals(4.38, rate.mid)
     }
 
     @Pact(provider = "nbp", consumer = "demo")
