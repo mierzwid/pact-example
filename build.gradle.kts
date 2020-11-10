@@ -53,7 +53,7 @@ tasks {
             "--dir=$pactsDir"
         )
         doLast {
-            logger.lifecycle("PACT stubs available under: http://localhost:$pactContainerPort")
+            logger.lifecycle("PACT stubs available under: http://localhost:$pactContainerPort/api/exchangerates/rates/A/EUR?format=json")
         }
         dependsOn("pactUpdate")
         mustRunAfter("stopPactStubs")
