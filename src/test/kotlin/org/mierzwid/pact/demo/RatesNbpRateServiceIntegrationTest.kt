@@ -25,6 +25,6 @@ class RatesNbpRateServiceIntegrationTest {
         val usdToEurRate = service.usdToEurRate()
 
         // then
-        assertEquals(1.25.toBigDecimal(), usdToEurRate.value)
+        assertEquals(Rate.of(1.25), usdToEurRate)
     }
 }

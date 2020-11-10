@@ -6,15 +6,16 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
-import org.mierzwid.pact.demo.currency.Code
-import org.mierzwid.pact.demo.currency.nbp.RateClientNbp
-import org.mierzwid.pact.demo.currency.NotFoundException
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.apache.commons.io.ByteOrderMark.UTF_BOM
 import org.apache.http.entity.ContentType
 import org.junit.Rule
 import org.junit.Test
+import org.mierzwid.pact.demo.currency.Code
+import org.mierzwid.pact.demo.currency.NotFoundException
+import org.mierzwid.pact.demo.currency.Rate
+import org.mierzwid.pact.demo.currency.nbp.RateClientNbp
 import java.sql.Date
 import java.time.LocalDate
 
@@ -56,7 +57,7 @@ class RatesNbpRateClientPactTest {
         val rate = client.getCurrencyToPlnRate(Code.EUR)
 
         //then
-        assertEquals(4.38.toBigDecimal(), rate.value)
+        assertEquals(Rate.of(4.38), rate)
     }
 
     @Pact(provider = "nbp", consumer = "demo")

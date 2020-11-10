@@ -17,7 +17,7 @@ class RateClientNbp(private val url: String = "http://api.nbp.pl") : RateClient 
             Json { ignoreUnknownKeys = true }
                 .decodeFromString<RatesNbp>(responseText)
                 .rates
-                .map { Rate(it.mid.toBigDecimal()) }
+                .map { Rate.of(it.mid) }
                 .first()
         } catch (e: FileNotFoundException) {
             throw NotFoundException()
