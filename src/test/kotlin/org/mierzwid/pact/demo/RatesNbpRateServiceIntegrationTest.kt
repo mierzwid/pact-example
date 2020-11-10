@@ -15,8 +15,8 @@ class RatesNbpRateServiceIntegrationTest {
         val service = RateService(object : RateClient {
             override fun getCurrencyToPlnRate(code: Code) =
                 when (code) {
-                    Code.USD -> Rate(5.0)
-                    Code.EUR -> Rate(4.0)
+                    Code.USD -> Rate.of(5.0)
+                    Code.EUR -> Rate.of(4.0)
                     else -> throw Exception("It should never ask for different rates")
                 }
         })
@@ -25,6 +25,6 @@ class RatesNbpRateServiceIntegrationTest {
         val usdToEurRate = service.usdToEurRate()
 
         // then
-        assertEquals(1.25, usdToEurRate, 0.001)
+        assertEquals(1.25.toBigDecimal(), usdToEurRate.value)
     }
 }

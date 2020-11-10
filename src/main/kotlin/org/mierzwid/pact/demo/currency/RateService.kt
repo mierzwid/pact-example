@@ -4,9 +4,9 @@ import org.mierzwid.pact.demo.currency.nbp.RateClientNbp
 
 class RateService(private val client: RateClient = RateClientNbp()) {
 
-    fun usdToEurRate(): Double {
-        val usdRate = client.getCurrencyToPlnRate(Code.USD)
-        val eurRate = client.getCurrencyToPlnRate(Code.EUR)
-        return usdRate.mid / eurRate.mid
+    fun usdToEurRate(): Rate {
+        val usd = client.getCurrencyToPlnRate(Code.USD)
+        val eur = client.getCurrencyToPlnRate(Code.EUR)
+        return usd / eur
     }
 }

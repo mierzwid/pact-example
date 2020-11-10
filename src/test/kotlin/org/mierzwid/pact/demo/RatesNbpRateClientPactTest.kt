@@ -56,7 +56,7 @@ class RatesNbpRateClientPactTest {
         val rate = client.getCurrencyToPlnRate(Code.EUR)
 
         //then
-        assertEquals(4.38, rate.mid)
+        assertEquals(4.38.toBigDecimal(), rate.value)
     }
 
     @Pact(provider = "nbp", consumer = "demo")

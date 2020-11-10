@@ -6,5 +6,8 @@ import org.mierzwid.pact.demo.currency.Rate
 @Serializable
 data class RatesNbp(
         val code: String,
-        val rates: List<Rate>
+        val rates: List<RateNbp>
 )
+
+@Serializable
+data class RateNbp(val mid: Double)

@@ -10,5 +10,5 @@ fun main() {
         else -> RateService()
     }
     val rate = service.usdToEurRate()
-    println("This is some rate: $rate")
+    println("This is some rate: ${rate.value}")
 }
