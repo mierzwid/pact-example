@@ -1,3 +1,3 @@
-package org.mierzwid.pact.demo.rates
+package org.mierzwid.pact.demo.currency
 
 class NotFoundException : RuntimeException()

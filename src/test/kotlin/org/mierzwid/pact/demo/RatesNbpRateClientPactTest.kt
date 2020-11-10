@@ -6,9 +6,9 @@ import au.com.dius.pact.consumer.junit.PactProviderRule
 import au.com.dius.pact.consumer.junit.PactVerification
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
-import org.mierzwid.pact.demo.rates.Code
-import org.mierzwid.pact.demo.rates.nbp.RateClientNbp
-import org.mierzwid.pact.demo.rates.NotFoundException
+import org.mierzwid.pact.demo.currency.Code
+import org.mierzwid.pact.demo.currency.nbp.RateClientNbp
+import org.mierzwid.pact.demo.currency.NotFoundException
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.apache.commons.io.ByteOrderMark.UTF_BOM
@@ -19,7 +19,7 @@ import java.sql.Date
 import java.time.LocalDate
 
 
-class RateClientPactTest {
+class RatesNbpRateClientPactTest {
 
     @get:Rule
     var provider: PactProviderRule = PactProviderRule("nbp", "localhost", 1234, this)
@@ -53,7 +53,7 @@ class RateClientPactTest {
         val client = RateClientNbp(provider.url)
 
         //when
-        val rate = client.getRate(Code.EUR)
+        val rate = client.getCurrencyToPlnRate(Code.EUR)
 
         //then
         assertEquals(4.38, rate.mid)
@@ -81,7 +81,7 @@ class RateClientPactTest {
 
         //when
         try {
-            client.getRate(Code.UNSPECIFIED)
+            client.getCurrencyToPlnRate(Code.UNSPECIFIED)
 
             //then
             fail("Expected exception to be thrown")

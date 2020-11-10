@@ -1,7 +1,7 @@
 package org.mierzwid.pact.demo
 
-import org.mierzwid.pact.demo.rates.RateService
-import org.mierzwid.pact.demo.rates.stub.RateClientStub
+import org.mierzwid.pact.demo.currency.RateService
+import org.mierzwid.pact.demo.currency.stub.RateClientStub
 
 fun main() {
     val env = Env.STAGE

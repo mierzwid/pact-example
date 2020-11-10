@@ -2,18 +2,18 @@ package org.mierzwid.pact.demo
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mierzwid.pact.demo.rates.Code
-import org.mierzwid.pact.demo.rates.Rate
-import org.mierzwid.pact.demo.rates.RateClient
-import org.mierzwid.pact.demo.rates.RateService
+import org.mierzwid.pact.demo.currency.Code
+import org.mierzwid.pact.demo.currency.Rate
+import org.mierzwid.pact.demo.currency.RateClient
+import org.mierzwid.pact.demo.currency.RateService
 
-class RateServiceIntegrationTest {
+class RatesNbpRateServiceIntegrationTest {
 
     @Test
     fun shouldReturnUsdToEurRate() {
         // given
         val service = RateService(object : RateClient {
-            override fun getRate(code: Code) =
+            override fun getCurrencyToPlnRate(code: Code) =
                 when (code) {
                     Code.USD -> Rate(5.0)
                     Code.EUR -> Rate(4.0)
